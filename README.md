@@ -1,2 +1,4 @@
 # spring-fullstack-projetos
- spring-fullstack-projetos - Projeto FullStack - Thymeleaf
+ spring-fullstack-projetos - Gerenciamento de Projeto FullStack - Thymeleaf
+ Desenvolvido no curso Treinaweb
+ 
