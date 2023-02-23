@@ -19,32 +19,32 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
     @Autowired
     private UserDetailsServiceImpl userDetailsServiceImpl;
 
-    //Se comentar todo esse c¢digo desabilita a seguran‡a da aplica‡Æo.
+    //Se comentar todo esse cï¿½digo desabilita a seguranï¿½a da aplicaï¿½ï¿½o.
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        // Configura as rotas publicas e privadas da aplica‡Æo
+        // Configura as rotas publicas e privadas da aplicaï¿½ï¿½o
         http.authorizeRequests()
             //antMatchers libera rotas
             .antMatchers("/adminlte/**").permitAll()    //obrigatoriamente antes do anyRequest
             .antMatchers("/img/**").permitAll()    //obrigatoriamente antes do anyRequest
             .antMatchers("/js/**").permitAll()    //obrigatoriamente antes do anyRequest
             .antMatchers("/plugins/**").permitAll()    //obrigatoriamente antes do anyRequest
-            //Dessa forma abaixo s¢ acessar  as rotas se for do tipo Gerente
+            //Dessa forma abaixo sï¿½ acessarï¿½ as rotas se for do tipo Gerente
             //Controle de Rotas
             .antMatchers("/**/cadastrar").hasAuthority(Perfil.ADMIN.toString())
             .antMatchers("/**/editar").hasAuthority(Perfil.ADMIN.toString())
             .antMatchers("/**/excluir").hasAuthority(Perfil.ADMIN.toString())
-            //anyRequest qualquer requisi‡Æo tem que estar autenticada
+            //anyRequest qualquer requisiï¿½ï¿½o tem que estar autenticada
             .anyRequest().authenticated();
 
         http.formLogin()
             .loginPage("/login")
             .defaultSuccessUrl("/clientes")
-            //Passando o parametro do username fazendo liga‡Æo com a tela de login
+            //Passando o parametro do username fazendo ligaï¿½ï¿½o com a tela de login
             .usernameParameter("email")
             .permitAll();
-        //Para aceitar requisi‡Æo de logout via link que ‚ GET
+        //Para aceitar requisiï¿½ï¿½o de logout via link que ï¿½ GET
         http.logout()
             .logoutRequestMatcher(
                 new AntPathRequestMatcher("/logout", "GET")
@@ -52,13 +52,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
             .logoutSuccessUrl("/login");
 
         http.rememberMe()
-            //.tokenValiditySeconds(tokenValiditySeconds) - M‚todo para manter o usuario logado por um determinado tempo      
-            .key("chaverememverMe");//Em produ‡Æo essa chave deve ser complexa pois vai para o cache
+            //.tokenValiditySeconds(tokenValiditySeconds) - Mï¿½todo para manter o usuario logado por um determinado tempo      
+            .key("chaverememverMe");//Em produï¿½ï¿½o essa chave deve ser complexa pois vai para o cache
     }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        //Informa a implementa‡Æo e o algortimo de hash para o login
+        //Informa a implementaï¿½ï¿½o e o algortimo de hash para o login
         auth.userDetailsService(userDetailsServiceImpl)
             .passwordEncoder(new BCryptPasswordEncoder());
     }

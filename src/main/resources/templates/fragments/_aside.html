@@ -1,16 +1,16 @@
 <!-- Main Sidebar Container -->
 <aside th:fragment="aside" class="main-sidebar sidebar-dark-primary elevation-4">
   <!-- Brand Logo -->
-  <a th:href="@{/}" class="brand-link">
-    <img th:src="@{/img/tw-logo.png}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3">
-    <span class="brand-text font-weight-light">TW Projetos</span>
+  <a th:href="@{/projetos}" class="brand-link">
+    <img th:src="@{/img/projeto.png}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3">
+    <span class="brand-text font-weight-light">Gerenciar Projetos</span>
   </a>
 
   <!-- Sidebar -->
   <div class="sidebar">
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
       <div class="info">
-        <!-- Usa a extensÆo do thymeleaf e atrav‚s do sec -->
+        <!-- Usa a extensï¿½o do thymeleaf e atravï¿½s do sec -->
         <a th:href="@{/perfil}" class="d-block" sec:authentication="name"></a>
       </div>
     </div>
@@ -26,7 +26,7 @@
             </p>
           </a>
           <ul class="nav nav-treeview">
-            <!-- ExpressÆo para ver se tem autoriza‡Æo para exibir no link -->
+            <!-- Expressï¿½o para ver se tem autorizaï¿½ï¿½o para exibir no link -->
             <li class="nav-item" sec:authorize="hasAuthority('ADMIN')">
               <a th:href="@{/clientes/cadastrar}" class="nav-link">
                 <i class="nav-icon fas fa-edit nav-icon"></i>
